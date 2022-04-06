@@ -11,6 +11,7 @@ import {
   Query,
 } from '@nestjs/common';
 import { Movie } from './entities/movie.entity';
+import { CreateMovieDto } from './dto/create-movie,dto';
 
 @Injectable()
 export class MoviesService {
@@ -31,7 +32,7 @@ export class MoviesService {
     return movie;
   }
 
-  createMovie(movieData) {
+  createMovie(movieData: CreateMovieDto) {
     this.movies.push({
       id: this.movies.length + 1,
       ...movieData,
@@ -43,13 +44,13 @@ export class MoviesService {
     this.movies = this.movies.filter((v) => v.id !== parseInt(id));
   }
 
-  updateMovie(movieId: string, movieData) {
+  updateMovie(movieId: string, movieData: CreateMovieDto) {
     const movie = this.getMovie(movieId);
     this.deleteMovie(movieId);
     this.movies.push({ ...movie, ...movieData });
   }
 
-  updateMoviePart(movieId: string) {
+  updateMoviePart(movieId: string): string {
     return `update part of ${movieId} movie`;
   }
 }

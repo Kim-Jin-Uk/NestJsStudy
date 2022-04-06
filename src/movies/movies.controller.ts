@@ -11,6 +11,7 @@ import {
 } from '@nestjs/common';
 import { MoviesService } from './movies.service';
 import { Movie } from './entities/movie.entity';
+import { CreateMovieDto } from './dto/create-movie,dto';
 
 @Controller('movies')
 export class MoviesController {
@@ -32,7 +33,7 @@ export class MoviesController {
   }
 
   @Post()
-  createMovie(@Body() movieData) {
+  createMovie(@Body() movieData: CreateMovieDto) {
     return this.movieService.createMovie(movieData);
   }
 
@@ -42,7 +43,7 @@ export class MoviesController {
   }
 
   @Put('/:id') //전체적인 변경
-  updateMovie(@Param('id') movieId: string, @Body() movieData) {
+  updateMovie(@Param('id') movieId: string, @Body() movieData: CreateMovieDto) {
     return this.movieService.updateMovie(movieId, movieData);
   }
 
